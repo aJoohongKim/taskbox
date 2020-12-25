@@ -1,6 +1,6 @@
 import React from 'react';
 
-enum TaskState {
+export enum TaskState {
   TASK_INBOX,
   TASK_PINNED,
   TASK_SNOOZED,
