@@ -6,7 +6,7 @@ const alignStyles = {
   padding: '0.75em 0.25em',
 };
 
-enum TaskState {
+export enum TaskState {
     TASK_INBOX,
     TASK_PINNED,
     TASK_SNOOZED,
@@ -23,8 +23,8 @@ export interface ITask {
 
 export interface TaskProps {
     task: ITask;
-    onSnoozeTask?: (id: string) => void;
-    onPinTask? : (id: string) => void;
+    onSnoozeTask: (id: string) => void;
+    onPinTask : (id: string) => void;
 }
 
 function Task({
