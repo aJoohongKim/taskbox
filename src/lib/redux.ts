@@ -81,7 +81,7 @@ function taskArchiveReducer(state: TasksState = {tasks: defaultTasks}, action: T
         )
     } as TasksState;
 }
-type RootState = ReturnType<typeof reducer>
+export type RootState = ReturnType<typeof reducer>
 
 // We export the constructed redux store
 export default createStore(reducer, { tasks: defaultTasks });
