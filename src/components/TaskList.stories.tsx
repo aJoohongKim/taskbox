@@ -1,18 +1,18 @@
 import React from 'react';
 
 import { TaskState } from './Task';
-import TaskList from './TaskList';
+import { TaskList, TaskListProps } from './TaskList';
 import * as TaskStories from './Task.stories';
 
 export default {
   component: TaskList,
-  title: 'TaskList',
-  decorators: [story => <div style={{ padding: '3rem' }}>{story()}</div>],
+  title: 'Cloud-Clipboard/TaskList',
+  decorators: [(story: any) => <div style={{ padding: '3rem' }}>{story()}</div>],
 };
 
-const Template = args => <TaskList {...args} />;
+const Template = (args: TaskListProps) => <TaskList {...args} />;
 
-export const Default = Template.bind({});
+export const Default: any = Template.bind({});
 Default.args = {
   // Shaping the stories through args composition.
   // The data was inherited from the Default story in task.stories.js.
@@ -26,7 +26,7 @@ Default.args = {
   ],
 };
 
-export const WithPinnedTasks = Template.bind({});
+export const WithPinnedTasks: any = Template.bind({});
 WithPinnedTasks.args = {
   // Shaping the stories through args composition.
   // Inherited data coming from the Default story.
@@ -36,13 +36,13 @@ WithPinnedTasks.args = {
   ],
 };
 
-export const Loading = Template.bind({});
+export const Loading:any = Template.bind({});
 Loading.args = {
   tasks: [],
   loading: true,
 };
 
-export const Empty = Template.bind({});
+export const Empty:any = Template.bind({});
 Empty.args = {
   // Shaping the stories through args composition.
   // Inherited data coming from the Loading story.

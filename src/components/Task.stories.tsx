@@ -1,36 +1,30 @@
 import React from 'react';
 
-import Task from './Task';
+import Task, { TaskProps, TaskState } from './Task';
 
 export default {
   component: Task,
-  title: 'Task',
+  title: 'Cloud-Clipboard/Task',
 };
 
-const Template = args => <Task {...args} />;
+const Template = (args: TaskProps) => <Task {...args} />;
 
-export const Default = Template.bind({});
+export const Default: any= Template.bind({});
 Default.args = {
-  task: {
-    id: '1',
-    title: 'Test Task',
-    state: 'TASK_INBOX',
-    updatedAt: new Date(2018, 0, 1, 9, 0),
-  },
+  id: '1',
+  title: 'Test Task',
+  state: TaskState.TASK_INBOX,
+  updatedAt: new Date(2018, 0, 1, 9, 0),
 };
 
-export const Pinned = Template.bind({});
+export const Pinned:any = Template.bind({});
 Pinned.args = {
-  task: {
-    ...Default.args.task,
-    state: 'TASK_PINNED',
-  },
+  ...Default.args,
+  state: TaskState.TASK_PINNED,
 };
 
-export const Archived = Template.bind({});
+export const Archived: any = Template.bind({});
 Archived.args = {
-  task: {
-    ...Default.args.task,
-    state: 'TASK_ARCHIVED',
-  },
+  ...Default.args,
+  state: TaskState.TASK_ARCHIVED,
 };

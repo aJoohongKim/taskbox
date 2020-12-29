@@ -1,15 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import Task, { ITask, TaskState } from './Task';
+import { archiveTask, pinTask, TasksState } from '../lib/redux';
+import Task, { TaskProps, TaskState } from './Task';
 
-export interface ITaskList {
+export interface TaskListProps {
     loading: boolean;
-    tasks: ITask[];
+    tasks: TaskProps[];
     onArchiveTask?: (id: string) => void;
     onPinTask? : (id: string) => void;
 }
 
-export default function TaskList({ loading, tasks, onPinTask, onArchiveTask }) {
+export function TaskList({ loading, tasks, onPinTask, onArchiveTask }: TaskListProps) {
   const events = {
     onPinTask,
     onArchiveTask,
@@ -57,8 +59,18 @@ export default function TaskList({ loading, tasks, onPinTask, onArchiveTask }) {
   return (
     <div className="list-items">
       {tasksInOrder.map(task => (
-        <Task key={task.id} task={task} {...events} />
+        <Task key={task.id} {...task} />
       ))}
     </div>
   );
 }
+
+export default connect(
+  ({ tasks }: TasksState) => ({
+    tasks: tasks.filter(t => t.state === TaskState.TASK_INBOX || t.state === TaskState.TASK_PINNED),
+  }),
+  dispatch => ({
+    onArchiveTask: (id: string) => dispatch(archiveTask(id)),
+    onPinTask: (id: string) => dispatch(pinTask(id)),
+  })
+)(TaskList);
